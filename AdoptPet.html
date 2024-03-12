@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="AdoptPet.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Store</title>
+</head>
+<body>
+    <div class="navBar">
+        <h1><a href="PetStoreHome.html">Pet Store</a></h1>
+
+        <ul>
+            <li><a href="AdoptPet.html">Adopt a Pet</a></li>
+            <li><a href="UpdatePet.html">Update a Pet</a></li>
+            <li><a href="AddPet.html">Add a Pet</a></li>
+        </ul>
+    </div>  
+
+    <img src="https://www.freewebheaders.com/wp-content/gallery/dogs/couple-of-bernese-mountain-dogs-in-floral-field-web-header.jpg" width="1100" height="300" class="runningDog">
+
+    <div class="row">
+        <div class="displayPets">
+            <h2>Available Pets:</h2>
+            <ul id="petList"></ul>
+        </div>
+
+        <div class="adopt">
+            <h2>Adopt a Pet!</h2><br><br>
+            <label for="adoptPetName">Who would you like to adopt? &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="text" id="adoptPetNameInput">
+            <button onclick="adoptPet()">Adopt</button>      
+        </div>
+    </div>
+
+    <script>
+        function listPets() {
+            fetch('http://localhost:8000/')
+                .then(response => response.json())
+                .then(data => {
+                    const petList = document.getElementById("petList");
+                    petList.innerHTML = "";
+                    data.forEach(pet => {
+                        const listItem = document.createElement("li");
+                        listItem.innerText = pet;
+                        petList.appendChild(listItem);
+                    });
+                })
+                .catch(error => console.error(error));
+        }
+
+        function adoptPet() {
+            const adoptPetName = document.getElementById("adoptPetNameInput").value;
+            fetch(`http://localhost:8000/${adoptPetName}`, { method: 'DELETE' })
+                .then(response => response.text())
+                .then(data => {
+                    alert(data);
+                    listPets();
+                })
+                .catch(error => console.error(error));
+            listPets();
+        }
+
+        listPets();
+    </script>
+</body>
+</html>

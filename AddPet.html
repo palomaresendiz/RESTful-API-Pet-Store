@@ -17,6 +17,61 @@
         </ul>
     </div>  
 
-    <h2>Add a Pet</h2>
+    <div class="addPet">
+        <h2>Add New Pet</h2>
+        <label for="newPetDetails">Pet Details (JSON format):</label><br>
+        <textarea id="newPetDetailsInput" rows="4" cols="50"></textarea>
+        <br><br>
+        <button onclick="addNewPet()">Add New Pet</button>
+    </div>
+
+    <div class="displayPetsRow">
+        <h2>Available Pets:</h2>
+        <ul id="petList"></ul>
+
+        <img src="https://rabbits.life/wp-content/uploads/2017/05/Thinking-About-Having-A-Rabbit-As-A-Pet-1.jpg" alt="Bunnies" width="450" height="300" class="catDog">
+    </div>
+
+    <script>
+        function listPets() {
+            fetch('http://localhost:8000/')
+                .then(response => response.json())
+                .then(data => {
+                    const petList = document.getElementById("petList");
+                    petList.innerHTML = "";
+                    data.forEach(pet => {
+                        const listItem = document.createElement("li");
+                        listItem.innerText = pet;
+                        petList.appendChild(listItem);
+                    });
+                })
+                .catch(error => console.error(error));
+        }
+
+        function addNewPet() {
+            const newPetDetails = document.getElementById("newPetDetailsInput").value;
+            try {
+                const jsonData = JSON.parse(newPetDetails);
+                fetch('http://localhost:8000', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jsonData)
+                })
+                    .then(response => response.text())
+                    .then(data => {
+                        alert(data);
+
+                    })
+                    .catch(error => console.error(error));
+            } catch (error) {
+                console.error("Invalid JSON format:", error);
+            }
+            listPets();
+        }
+
+        listPets();
+    </script>
 </body>
 </html>

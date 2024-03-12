@@ -8,54 +8,30 @@
 </head>
 <body>
     <div class="navBar">
-        <h1>Pet Store</h1>
+        <h1><a href="PetStoreHome.html">Pet Store</a></h1>
 
         <ul>
-            <li><a href="default.asp">Adopt a Pet</a></li>
-            <li><a href="news.asp">Update a Pet</a></li>
-            <li><a href="contact.asp">Add a Pet</a></li>
+            <li><a href="AdoptPet.html">Adopt a Pet</a></li>
+            <li><a href="UpdatePet.html">Update a Pet</a></li>
+            <li><a href="AddPet.html">Add a Pet</a></li>
         </ul>
     </div>  
 
-    <div class="displayPets">
+    <div class="displayPetsRow">
         <h2>Available Pets:</h2>
         <ul id="petList"></ul>
 
         <img src="https://www.webbox.co.uk/wp-content/uploads/2019/04/shutterstock_1095001973.jpg" alt="Cat and dog" width="450" height="300" class="catDog">
     </div>
 
-    <div class="textFields">
         <div class="details">
             <h2>Want More Details?</h2></th><br><br>
-            <label for="petName">Enter pet name:</label>
+            <label for="petName">Enter pet name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input type="text" id="petNameInput">
             <button onclick="getDetails()">Get Details</button>
             <p id="petDetails"></p>
             <br><br>
         </div>
-
-        <div class="adopt">
-            <h2>Adopt a Pet!</h2><br><br>
-            <label for="adoptPetName">Who would you like to adopt?</label>
-            <input type="text" id="adoptPetNameInput">
-            <button onclick="adoptPet()">Adopt</button>      
-        </div>      
-    </div>
-
-    <h2>Update Pet Details</h2>
-    <label for="updatePetName">Enter pet name:</label>
-    <input type="text" id="updatePetNameInput">
-    <br>
-    <label for="updatePetDetails">New Details (JSON format):</label><br>
-    <textarea id="updatePetDetailsInput" rows="4" cols="50"></textarea>
-    <br>
-    <button onclick="updatePet()">Update Details</button>
-
-    <h2>Add New Pet</h2>
-    <label for="newPetDetails">Pet Details (JSON format):</label><br>
-    <textarea id="newPetDetailsInput" rows="4" cols="50"></textarea>
-    <br>
-    <button onclick="addNewPet()">Add New Pet</button>
 
     <script>
         function listPets() {
@@ -79,52 +55,6 @@
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById("petDetails").innerText = JSON.stringify(data);
-                })
-                .catch(error => console.error(error));
-        }
-
-        function adoptPet() {
-            const adoptPetName = document.getElementById("adoptPetNameInput").value;
-            fetch(`http://localhost:8000/${adoptPetName}`, { method: 'DELETE' })
-                .then(response => response.text())
-                .then(data => {
-                    alert(data);
-                    listPets();
-                })
-                .catch(error => console.error(error));
-        }
-
-        function updatePet() {
-            const updatePetName = document.getElementById("updatePetNameInput").value;
-            const updatePetDetails = document.getElementById("updatePetDetailsInput").value;
-            fetch(`http://localhost:8000/${updatePetName}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: updatePetDetails
-            })
-                .then(response => response.text())
-                .then(data => {
-                    alert(data);
-                    listPets();
-                })
-                .catch(error => console.error(error));
-        }
-
-        function addNewPet() {
-            const newPetDetails = document.getElementById("newPetDetailsInput").value;
-            fetch('http://localhost:8000', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: newPetDetails
-            })
-                .then(response => response.text())
-                .then(data => {
-                    alert(data);
-                    listPets();
                 })
                 .catch(error => console.error(error));
         }
