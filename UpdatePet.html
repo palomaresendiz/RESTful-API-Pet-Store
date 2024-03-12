@@ -52,22 +52,27 @@
         }
 
         function updatePet() {
-            const updatePetName = document.getElementById("updatePetNameInput").value;
-            const updatePetDetails = document.getElementById("updatePetDetailsInput").value;
-            fetch(`http://localhost:8000/${updatePetName}`, {
+            const petName = document.getElementById("updatePetNameInput").value;
+            const petDetails = document.getElementById("updatePetDetailsInput").value;
+            
+            fetch(`http://localhost:8000/${petName}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: updatePetDetails
+                body: JSON.stringify(JSON.parse(petDetails))
             })
-                .then(response => response.text())
-                .then(data => {
-                    alert(data);
-                    listPets();
-                })
-                .catch(error => console.error(error));
-            listPets();
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to update pet');
+                }
+                return response.text();
+            })
+            .then(message => {
+                alert(message);
+                listPets();
+            })
+            .catch(error => console.error(error));
         }
 
         listPets();
