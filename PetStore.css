@@ -1,6 +1,70 @@
 body {
-    background-color: lightcyan;
-  }
-h1 {
+    margin: 0;
+}
+
+.navBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: steelblue;
+    padding: 10px;
+}
+
+h1{
+    padding-left: 40px;
+}
+
+.navBar ul li {
+    display: inline;
+    list-style-type: none;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.navBar ul li a {
+    color: black;
+}
+
+.displayPets {
+    column-count: 2;
+    margin-left: 150px;
+    margin-top: 40px;
+}
+
+ul {
+    list-style-type: none; 
+    padding-left: 0; 
+}
+
+.displayPets ul li {
+    background: url('https://st2.depositphotos.com/1007168/6106/v/450/depositphotos_61068597-stock-illustration-cartoon-paw-print.jpg') no-repeat left center;
+    background-size: contain; 
+    padding-left: 40px; 
+    margin-bottom: 10px; 
+    line-height: 1.5;
+    font-size: 20px;
+    margin: 35px;
+}
+
+.catDog {
+    vertical-align: right;
+}
+
+.textFields {
+    margin-top: 40px;
+    margin-left: 50px;
+    margin-right: 50px;
     text-align: center;
-  }
+    column-count: 2;
+}
+
+.details {
+    background-color: steelblue;
+    padding: 40px;
+}
+
+.adopt {
+    background-color: steelblue;
+    padding: 20px;
+    padding-bottom: 73px;
+}
