@@ -7,28 +7,40 @@
     <title>Pet Store</title>
 </head>
 <body>
-    <h1>Pet Store</h1>
+    <div class="navBar">
+        <h1>Pet Store</h1>
 
-    <h2>Available Pets:</h2>
-    <ul id="petList"></ul>
+        <ul>
+            <li><a href="default.asp">Adopt a Pet</a></li>
+            <li><a href="news.asp">Update a Pet</a></li>
+            <li><a href="contact.asp">Add a Pet</a></li>
+        </ul>
+    </div>  
 
-    <table>
-        <tr>
-            <th><h2>More Details?</h2></th>
-            <th><h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1></th>
-            <th><h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adopt!</h2></th>
-        </tr>
-        <tr>
-            <td><label for="petName">Enter pet name:</label></td>
-            <td><input type="text" id="petNameInput"></td>
-            <td><button onclick="getDetails()">Get Details</button></td>
-            <td><p id="petDetails"></p></td>
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-            <td><label for="adoptPetName">Who would you like to adopt?</label></td>
-            <td><input type="text" id="adoptPetNameInput"></td>
-            <td><button onclick="adoptPet()">Adopt</button></td>            
-        </tr>
-    </table>
+    <div class="displayPets">
+        <h2>Available Pets:</h2>
+        <ul id="petList"></ul>
+
+        <img src="https://www.webbox.co.uk/wp-content/uploads/2019/04/shutterstock_1095001973.jpg" alt="Cat and dog" width="450" height="300" class="catDog">
+    </div>
+
+    <div class="textFields">
+        <div class="details">
+            <h2>Want More Details?</h2></th><br><br>
+            <label for="petName">Enter pet name:</label>
+            <input type="text" id="petNameInput">
+            <button onclick="getDetails()">Get Details</button>
+            <p id="petDetails"></p>
+            <br><br>
+        </div>
+
+        <div class="adopt">
+            <h2>Adopt a Pet!</h2><br><br>
+            <label for="adoptPetName">Who would you like to adopt?</label>
+            <input type="text" id="adoptPetNameInput">
+            <button onclick="adoptPet()">Adopt</button>      
+        </div>      
+    </div>
 
     <h2>Update Pet Details</h2>
     <label for="updatePetName">Enter pet name:</label>
