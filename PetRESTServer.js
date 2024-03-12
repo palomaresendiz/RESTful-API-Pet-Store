@@ -67,7 +67,7 @@ function deleteone(res, name) {
   Pets.delete(name);
   res.setHeader('Content-Type', 'text/plain');
   res.statusCode = 200;   //ok
-  res.write(`${name} deleted`);
+  res.write(`You adopted ${name}!`);
 }
 
 function updateone(res, name, item) {
