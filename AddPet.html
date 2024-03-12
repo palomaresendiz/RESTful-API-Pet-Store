@@ -17,21 +17,20 @@
         </ul>
     </div>  
 
+    <div class="addPet">
+        <h2>Add New Pet</h2>
+        <label for="newPetDetails">Pet Details (JSON format):</label><br>
+        <textarea id="newPetDetailsInput" rows="4" cols="50"></textarea>
+        <br><br>
+        <button onclick="addNewPet()">Add New Pet</button>
+    </div>
+
     <div class="displayPetsRow">
         <h2>Available Pets:</h2>
         <ul id="petList"></ul>
 
-        <img src="https://www.webbox.co.uk/wp-content/uploads/2019/04/shutterstock_1095001973.jpg" alt="Cat and dog" width="450" height="300" class="catDog">
+        <img src="https://rabbits.life/wp-content/uploads/2017/05/Thinking-About-Having-A-Rabbit-As-A-Pet-1.jpg" alt="Bunnies" width="450" height="300" class="catDog">
     </div>
-
-        <div class="details">
-            <h2>Want More Details?</h2></th><br><br>
-            <label for="petName">Enter pet name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input type="text" id="petNameInput">
-            <button onclick="getDetails()">Get Details</button>
-            <p id="petDetails"></p>
-            <br><br>
-        </div>
 
     <script>
         function listPets() {
@@ -49,18 +48,30 @@
                 .catch(error => console.error(error));
         }
 
-        function getDetails() {
-            const petName = document.getElementById("petNameInput").value;
-            fetch(`http://localhost:8000/${petName}`)
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById("petDetails").innerText = JSON.stringify(data);
+        function addNewPet() {
+            const newPetDetails = document.getElementById("newPetDetailsInput").value;
+            try {
+                const jsonData = JSON.parse(newPetDetails);
+                fetch('http://localhost:8000', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jsonData)
                 })
-                .catch(error => console.error(error));
+                    .then(response => response.text())
+                    .then(data => {
+                        alert(data);
+
+                    })
+                    .catch(error => console.error(error));
+            } catch (error) {
+                console.error("Invalid JSON format:", error);
+            }
+            listPets();
         }
 
         listPets();
     </script>
 </body>
 </html>
-

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="AdoptPet.css">
+    <link rel="stylesheet" href="PetStore.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Store</title>
@@ -17,20 +17,22 @@
         </ul>
     </div>  
 
-    <img src="https://www.freewebheaders.com/wp-content/gallery/dogs/couple-of-bernese-mountain-dogs-in-floral-field-web-header.jpg" width="1100" height="300" class="runningDog">
+    <div class="updatePet">
+        <h2>Update Pet Details</h2>
+        <label for="updatePetName">Enter pet name:</label>
+        <input type="text" id="updatePetNameInput">
+        <br><br>
+        <label for="updatePetDetails">New Details (JSON format):</label><br>
+        <textarea id="updatePetDetailsInput" rows="4" cols="50"></textarea>
+        <br><br>
+        <button onclick="updatePet()">Update Details</button>
+    </div>
 
-    <div class="row">
-        <div class="displayPets">
-            <h2>Available Pets:</h2>
-            <ul id="petList"></ul>
-        </div>
+    <div class="displayPetsRow">
+        <h2>Available Pets:</h2>
+        <ul id="petList"></ul>
 
-        <div class="adopt">
-            <h2>Adopt a Pet!</h2><br><br>
-            <label for="adoptPetName">Who would you like to adopt? &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input type="text" id="adoptPetNameInput">
-            <button onclick="adoptPet()">Adopt</button>      
-        </div>
+        <img src="https://www.rent.com/blog/wp-content/uploads/2022/05/pet_birdsshutterstock_1015257169-2.jpg" alt="Birds" width="450" height="300" class="catDog">
     </div>
 
     <script>
@@ -49,9 +51,16 @@
                 .catch(error => console.error(error));
         }
 
-        function adoptPet() {
-            const adoptPetName = document.getElementById("adoptPetNameInput").value;
-            fetch(`http://localhost:8000/${adoptPetName}`, { method: 'DELETE' })
+        function updatePet() {
+            const updatePetName = document.getElementById("updatePetNameInput").value;
+            const updatePetDetails = document.getElementById("updatePetDetailsInput").value;
+            fetch(`http://localhost:8000/${updatePetName}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: updatePetDetails
+            })
                 .then(response => response.text())
                 .then(data => {
                     alert(data);
