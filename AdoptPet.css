@@ -34,6 +34,7 @@ h1{
     padding: 20px;
     display: block;
     margin: auto;
+    padding-bottom: 40px;
 }
 
 .row {
@@ -41,9 +42,9 @@ h1{
     margin-right: 50px;
 }
 
+
 .displayPets {
     margin-left: 150px;
-    margin-top: 40px;
 }
 
 ul {
@@ -64,5 +65,5 @@ ul {
 .adopt {
     text-align: center;
     background-color: steelblue;
-    padding: 40px;
+    padding: 30px;
 }
