@@ -63,7 +63,11 @@
             .then(response => {
                 if (response.ok) {
                     console.log('Pet added successfully');
-                    listPets(); 
+                    const petList = document.getElementById("petList");
+                    const listItem = document.createElement("li");
+                    listItem.innerText = newPetDetails.name; // Assuming the name is stored under 'name' in the JSON
+                    listItem.classList.add('displayPetsRow');
+                    petList.appendChild(listItem);
                 } else {
                     throw new Error('Failed to add pet');
                 }
