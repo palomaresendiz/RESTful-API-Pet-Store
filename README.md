@@ -14,7 +14,9 @@ Adopt a Pet
 <img width="600" height="380" alt="Screenshot 2024-04-25 at 12 00 54 AM" src="https://github.com/palomaresendiz/RESTful-API-Pet-Store/assets/127056165/9aec2867-f354-4ed7-9a6f-aff87323d02a">  
 
 <img width="600" height="380" alt="Screenshot 2024-04-25 at 12 02 45 AM" src="https://github.com/palomaresendiz/RESTful-API-Pet-Store/assets/127056165/ff83068a-3474-442d-9a31-5163184f050e">        
-
+        
+      
+      
 Add a Pet   
 <img width="600" height="380" alt="Screenshot 2024-04-25 at 12 05 42 AM" src="https://github.com/palomaresendiz/RESTful-API-Pet-Store/assets/127056165/11f61ecd-5d75-4b08-a13c-8989ea03b7e0">   
 
