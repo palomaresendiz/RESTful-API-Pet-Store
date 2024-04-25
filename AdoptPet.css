@@ -1,17 +1,22 @@
 body {
+    font-family: Georgia, serif;  
     margin: 0;
 }
 
 .navBar {
+    font-family: 'Sofia', sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: steelblue;
-    padding: 10px;
+    background-color: CornflowerBlue;
 }
 
-h1{
+h1 {
     padding-left: 40px;
+}
+
+h2 {
+    font-weight: normal;
 }
 
 .navBar h1 a {
@@ -64,6 +69,9 @@ ul {
 
 .adopt {
     text-align: center;
-    background-color: steelblue;
+    background-color: navajowhite;
     padding: 30px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2.5px;
 }

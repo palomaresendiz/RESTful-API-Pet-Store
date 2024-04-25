@@ -1,9 +1,8 @@
 // **************************************************************  
-// *** This is a simple Pet server written in pure Javascript ***
-// *** (requires Node.js) by The Rickster to serve as a       ***
-// *** working REST API prior to learning Express/MongoDB.    ***
-// ***                                                        ***
-// *** Runs on http://localhost:8000  (see consts below)      ***
+// *** This is a Pet server written in pure Javascript        ***
+// *** (requires Node.js)                                     ***
+// *** Serves as a REST API                                   ***
+// *** By Paloma Resendiz                                     ***
 // **************************************************************  
 
 const hostname = "127.0.0.1";
@@ -17,8 +16,8 @@ const { getEnvironmentData } = require("worker_threads");
 // ***********************************************************
 
 var Pets = new Map();
-Pets.set("Barky", {species: "Dog", breed: "Labrador", age: 3 });
-Pets.set("Meowy", {species: "Cat", breed: "Siamese", age: 1 });
+Pets.set("Bandit", {species: "Dog", breed: "Labrador", age: 3 });
+Pets.set("Poppy", {species: "Cat", breed: "Siamese", age: 1 });
 
 //helper functions
 
@@ -90,7 +89,7 @@ function handle_get(req,res) {
   readone(res, req.url.substring(1));
 }
 
-function handle_post(req,res,body) {
+function handle_post(req,res,body) { 
   createone(res, req.url.substring(1), JSON.parse(body));
 }
 
@@ -115,9 +114,9 @@ function handle_req (req,res,body) {
   try {
     console.log(`handle_req ${req.method} request`);
 
-    // Add CORS headers.  I hate CORS
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,PATCH,DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
     if (req.method === "GET"   ) handle_get(req,res);
     if (req.method === "POST"  ) handle_post(req,res,body);

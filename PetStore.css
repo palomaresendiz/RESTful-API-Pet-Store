@@ -1,17 +1,22 @@
 body {
+    font-family: Georgia, serif; 
     margin: 0;
 }
 
 .navBar {
+    font-family: 'Sofia', sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: steelblue;
-    padding: 10px;
+    background-color: cornflowerblue;
 }
 
-h1{
+h1 {
     padding-left: 40px;
+}
+
+h2 {
+    font-weight: normal;
 }
 
 .navBar h1 a {
@@ -56,21 +61,16 @@ ul {
     vertical-align: left;
 }
 
-.textFields {
-    margin-top: 40px;
-    margin-left: 50px;
-    margin-right: 50px;
-    text-align: center;
-    column-count: 2;
-}
-
 .details {
     text-align: center;
-    background-color: steelblue;
+    background-color: navajowhite;
+    border-style: solid;
+    border-color: black;
+    border-width: 2.5px;
     margin-top: 30px;
     margin-left: 100px;
     margin-right: 100px;
-    padding: 30px;
+    padding: 10px;
 }
 
 .updatePet {
